@@ -32,7 +32,25 @@ export default function Sidemenu({ open, toggleDrawer }) {
           <ListItemIcon>
             <HomeRepairServiceIcon />
           </ListItemIcon>
-          <ListItemText primary="Registro Reparación" />
+          <ListItemText primary="Registrear Reparación" />
+        </ListItemButton>
+      </List>
+
+      <List>
+        <ListItemButton onClick={() => navigate("/registrovehiculo")}>
+          <ListItemIcon>
+            <HomeRepairServiceIcon />
+          </ListItemIcon>
+          <ListItemText primary="Registrar Vehículo" />
+        </ListItemButton>
+      </List>
+
+      <List>
+        <ListItemButton onClick={() => navigate("/vehicle/list")}>
+          <ListItemIcon>
+            <HomeRepairServiceIcon />
+          </ListItemIcon>
+          <ListItemText primary="Listado de Vehículos" />
         </ListItemButton>
       </List>
 
