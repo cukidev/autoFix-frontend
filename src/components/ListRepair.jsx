@@ -13,7 +13,7 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const ListVehicle = () => {
+const ListRepair = () => {
   const [vehicles, setVehicles] = useState([]);
 
   const navigate = useNavigate();
@@ -152,4 +152,4 @@ const ListVehicle = () => {
   );
 };
 
-export default ListVehicle;
+export default ListRepair;

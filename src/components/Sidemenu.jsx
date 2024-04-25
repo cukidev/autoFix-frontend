@@ -5,9 +5,9 @@ import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-
+import CarRepairIcon from '@mui/icons-material/CarRepair';
+import BuildIcon from '@mui/icons-material/Build';
 import HomeIcon from "@mui/icons-material/Home";
-import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
 import { useNavigate } from "react-router-dom";
 
 export default function Sidemenu({ open, toggleDrawer }) {
@@ -28,33 +28,22 @@ export default function Sidemenu({ open, toggleDrawer }) {
       </List>
 
       <List>
-        <ListItemButton onClick={() => navigate("/registroreparacion")}>
-          <ListItemIcon>
-            <HomeRepairServiceIcon />
-          </ListItemIcon>
-          <ListItemText primary="Registrear Reparación" />
-        </ListItemButton>
-      </List>
-
-      <List>
-        <ListItemButton onClick={() => navigate("/registrovehiculo")}>
-          <ListItemIcon>
-            <HomeRepairServiceIcon />
-          </ListItemIcon>
-          <ListItemText primary="Registrar Vehículo" />
-        </ListItemButton>
-      </List>
-
-      <List>
         <ListItemButton onClick={() => navigate("/vehicle/list")}>
           <ListItemIcon>
-            <HomeRepairServiceIcon />
+            <CarRepairIcon />
           </ListItemIcon>
           <ListItemText primary="Listado de Vehículos" />
         </ListItemButton>
       </List>
 
-
+      <List>
+        <ListItemButton onClick={() => navigate("/repair/list")}>
+          <ListItemIcon>
+            <BuildIcon />
+          </ListItemIcon>
+          <ListItemText primary="Listado de Reparación" />
+        </ListItemButton>
+      </List>
 
     </Box>
   );

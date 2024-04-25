@@ -5,8 +5,8 @@ import Home from './components/Home';
 import Navbar from "./components/navbar"
 import RegistroReparacion from "./components/RegistroReparacion"
 import RegistroVehiculo from './components/RegistroVehiculo';
-import Sidemenu from './components/Sidemenu';
-import listVehicle from './components/ListVehicle.jsx';
+import ListVehicle from './components/ListVehicle.jsx';
+import ListRepair from './components/ListRepair.jsx';
 
 function App() {
   return (
@@ -16,9 +16,9 @@ function App() {
             <Navbar></Navbar>
               <Routes>
                 <Route path="/home" element={<Home/>} />
-                <Route path="/registroreparacion" element={<RegistroReparacion/>} />
-                <Route path="/registrovehiculo" element={<RegistroVehiculo/>} />
-                <Route path="/vehicle/list" element={<listVehicle/>} />
+                <Route path="/register/list" element={<ListRepair/>} />
+                <Route path="/vehicle/add" element={<RegistroVehiculo/>} />
+                <Route path="/vehicle/list" element={<ListVehicle/>} />
               </Routes>
             </div>
         </Router>

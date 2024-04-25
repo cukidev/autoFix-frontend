@@ -7,7 +7,7 @@ const Home = () => {
       <div>
         <img src={logoImage} alt="Autofix Logo" style={{ width: '90px', height: 'auto' }} />
         <h1>Bienvenido a Autofix</h1>
-        <p>Creado por Paloma</p>
+        <p>Creado por Paloma Zepeda Garrido</p>
       </div>
     );
   };
