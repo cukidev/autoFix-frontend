@@ -15,6 +15,7 @@ export default function Sidemenu({ open, toggleDrawer }) {
 
   const listOptions = () => (
     <Box
+      sx={{ width: 250 }}
       role="presentation"
       onClick={toggleDrawer(false)}
     >
@@ -50,7 +51,7 @@ export default function Sidemenu({ open, toggleDrawer }) {
 
   return (
     <div>
-      <Drawer anchor={"left"} open={open} onClose={toggleDrawer(false)}>
+      <Drawer anchor={"left"}  open={open} onClose={toggleDrawer(false)}>
         {listOptions()}
       </Drawer>
     </div>

@@ -7,124 +7,103 @@ import 'react-toastify/dist/ReactToastify.css';
 const  RegistroReparacion= () => {
     const navigate = useNavigate();
 
-    const [licensePlate, setLicensePlate] = useState("");
-    const [brand, setBrand] = useState("");
-    const [model, setModel] = useState("");
-    const [vehicleType, setVehicleType] = useState("");
-    const [yearOfManufacture, setYearOfManufacture] = useState("");
-    const [engineType, setEngineType] = useState("");
-    const [seats, setSeats] = useState("");
+    const [entryDate, setEntryDate] = useState(""); // fecha de ingreso
+    const [repairType, setRepairType] = useState(""); // tipo de reparacion
+    const [idVeh , setIdVeh] = useState(""); // id del vehiculo
+    const [totalCost, setTotalCost] = useState(""); // costo total
 
-    const vehicleTypes = ['Sedan', 'Hatchback', 'SUV', 'Pickup', 'Furgoneta'];
-    const engineTypes = ['Gasolina', 'Diésel', 'Híbrido', 'Eléctrico'];
+
+    const repairTypes = ['Sistema de Frenos', 'Sistema de Refrigeración', 'Motor', 'Transmisión', 'Sistema Eléctrico', 'Sistema de Escape', 'Neumático y Ruedas', 'Suspensión y Dirección', 'Aire Acondicionado y Calefacción', 'Sistema de Combustible', 'Reparación y Reemplazo del Parabrisas y Cristales'];
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Validación para la patente
-        const licensePlateRegex = /^[A-Za-z]{4}\d{2}$/;
-        if (!licensePlateRegex.test(licensePlate)) {
-            toast.error("La patente debe tener cuatro letras seguidas de dos números.");
-            return;
-        }
-
-        // Validación para el año de fabricación
-        const currentYear = new Date().getFullYear();
-        if (yearOfManufacture < 1900 || yearOfManufacture > currentYear) {
-            toast.error("El año de fabricación debe estar entre 1900 y el año actual.");
-            return;
-        }
-        
-        // Validación para el número de asientos
-        if (seats < 1 || seats > 20) {
-            toast.error("El número de asientos debe estar entre 1 y 20.");
-            return;
-        }
-
-        if (!licensePlate || !brand || !model || !vehicleType || !yearOfManufacture || !engineType || !seats) {
-            toast.error("Por favor complete todos los campos.");
-            return;
-        }
-
-        const newVehicle = {
-            license_plate: licensePlate,
-            brand,
-            model,
-            v_type: vehicleType,
-            year_of_manufacture: yearOfManufacture,
-            engine_type: engineType,
-            seats
+        const newRepair = {
+            repair_type: repairType,
+            license_plate: license_plate
         };
+
+        repairService.create(newRepair)
+            .then(response => {
+                console.log("Reparación registrada exitosamente", response);
+                if (response.status === 201 || response.status === 200) {
+                    toast.success("Reparación registrada exitosamente", {
+                        position: "top-center",
+                        onClose: () => navigate('/repair/list')
+                    });
+                } else {
+                    console.error("Respuesta inesperada del servidor", response);
+                    toast.error("Respuesta inesperada al registrar la reparación");
+                }
+            })
+            .catch(error => {
+                console.error("Error al registrar la reparación", error);
+                toast.error("Error al registrar la reparación");
+            });
+        };
+
+        const inputStyle = {
+            padding: '12px 20px',
+            margin: '8px 0',
+            boxSizing: 'border-box',
+            border: 'none',
+            borderBottom: '2px solid #f2f2f2',
+            transition: 'border-color 0.2s ease-in-out',
+            outline: 'none',
+            width: '100%',
+            backgroundColor: '#f1f1f1',
+            color: '#052b5c',
+            borderRadius: '10px',
+          };
     
-        vehicleService.create(newVehicle)
-        .then(response => {
-            console.log("Respuesta completa del servidor:", response);
-            if (response.status === 200 || response.status === 201) {
-                toast.success("Vehículo registrado con éxito", {
-                    position: "top-center",
-                    onClose: () => navigate('/vehicle/list')
-                });
-            } else {
-                console.error("Respuesta inesperada del servidor", response);
-                toast.error("Respuesta inesperada al registrar el vehículo");
-            }
-        })
-        .catch(error => {
-            console.error("Ha ocurrido un error al registrar el vehículo", error);
-            toast.error("Error al registrar el vehículo");
-        });
-    };
+        const buttonStyle = {
+            backgroundColor: '#f53162',
+            color: 'white',
+            padding: '14px 20px',
+            margin: '8px 0',
+            border: 'none',
+            cursor: 'pointer',
+            width: '100%',
+            opacity: '0.9',
+          };
 
-    const inputStyle = {
-        padding: '12px 20px',
-        margin: '8px 0',
-        boxSizing: 'border-box',
-        border: 'none',
-        borderBottom: '2px solid #f2f2f2',
-        transition: 'border-color 0.2s ease-in-out',
-        outline: 'none',
-        width: '100%',
-        backgroundColor: '#f1f1f1',
-        color: '#052b5c',
-      };
+          return(
+            <div>
+                <ToastContainer autoClose={2000} hideProgressBar/>
+                <h2>Registro de reparación</h2>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        style={inputStyle}
+                        type="date"
+                        placeholder="Fecha de ingreso"
+                        value={entryDate}
+                        onChange={(e) => setEntryDate(e.target.value)}
+                        required
+                    />
+                    <select
+                        style={inputStyle}
+                        value={repairType}
+                        onChange={(e) => setRepairType(e.target.value)}
+                        required
+                    >
+                        <option value="" disabled>Seleccione un tipo de reparación</option>
+                        {repairTypes.map((repairType, index) => (
+                            <option key={index} value={repairType}>{repairType}</option>
+                        ))}
+                    </select>
+                    <input
+                        style={inputStyle}
+                        type="text"
+                        placeholder="ID del vehículo"
+                        value={idVeh}
+                        onChange={(e) => setIdVeh(e.target.value)}
+                        required
+                    />
+                    <button style={buttonStyle} type="submit">Registrar reparación</button>
+                </form>
 
-    const buttonStyle = {
-        backgroundColor: '#f53162',
-        color: 'white',
-        padding: '14px 20px',
-        margin: '8px 0',
-        border: 'none',
-        cursor: 'pointer',
-        width: '100%',
-        opacity: '0.9',
-      };
-      
-    return (
-      <div>
-        <ToastContainer autoClose={2000} hideProgressBar />
-        <h1>Registra un nuevo vehículo</h1>
-        <form onSubmit={handleSubmit}>
-            <input type="text" value={licensePlate} onChange={e => setLicensePlate(e.target.value)} placeholder="Patente" style={inputStyle} />
-            <input type="text" value={brand} onChange={e => setBrand(e.target.value)} placeholder="Marca" style={inputStyle} />
-            <input type="text" value={model} onChange={e => setModel(e.target.value)} placeholder="Modelo" style={inputStyle} />
-            <select value={vehicleType} onChange={e => setVehicleType(e.target.value)} style={inputStyle}>
-                <option value="">Seleccione Tipo de Vehículo</option>
-                {vehicleTypes.map(type => (
-                    <option key={type} value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</option>
-                ))}
-            </select>
-            <input type="text" value={yearOfManufacture} onChange={e => setYearOfManufacture(e.target.value)} placeholder="Año de fabricación" style={inputStyle} />
-            <select value={engineType} onChange={e => setEngineType(e.target.value)} style={inputStyle}>
-                <option value="">Seleccione Tipo de Motor</option>
-                {engineTypes.map(type => (
-                    <option key={type} value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</option>
-                ))}
-            </select>
-            <input type="text" value={seats} onChange={e => setSeats(e.target.value)} placeholder="Número de asientos" style={inputStyle} />
-            <button type="submit" style={buttonStyle}>Registrar vehículo</button>
-        </form>
-      </div>
-    );                 
+            </div>
+          );
+            
 };
-
-export default RegistroVehiculo;
+export default RegistroReparacion;

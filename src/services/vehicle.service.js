@@ -12,8 +12,8 @@ const get = id => {
     return httpClient.get(`/api/v1/vehicle/${id}`);
 }
 
-const update = data => {
-    return httpClient.put('/api/v1/vehicle/', data);
+const update = (id, data) => {
+    return httpClient.put(`/api/v1/vehicle/${id}`, data);
 }
 
 const remove = id => {

@@ -14,6 +14,7 @@ const  VehiculoReparacion= () => {
     const [yearOfManufacture, setYearOfManufacture] = useState("");
     const [engineType, setEngineType] = useState("");
     const [seats, setSeats] = useState("");
+    const [mileage, setMileage] = useState("");
 
     const vehicleTypes = ['Sedan', 'Hatchback', 'SUV', 'Pickup', 'Furgoneta'];
     const engineTypes = ['Gasolina', 'Diésel', 'Híbrido', 'Eléctrico'];
@@ -41,8 +42,14 @@ const  VehiculoReparacion= () => {
             return;
         }
 
-        if (!licensePlate || !brand || !model || !vehicleType || !yearOfManufacture || !engineType || !seats) {
+        if (!licensePlate || !brand || !model || !vehicleType || !yearOfManufacture || !engineType || !seats || !mileage) {
             toast.error("Por favor complete todos los campos.");
+            return;
+        }
+
+        // Validación para el kilometraje tiene que ser un numero siosi
+        if (isNaN(mileage)) {
+            toast.error("El kilometraje debe ser un número.");
             return;
         }
 
@@ -53,7 +60,8 @@ const  VehiculoReparacion= () => {
             v_type: vehicleType,
             year_of_manufacture: yearOfManufacture,
             engine_type: engineType,
-            seats
+            seats,
+            mileage
         };
     
         vehicleService.create(newVehicle)
@@ -86,6 +94,7 @@ const  VehiculoReparacion= () => {
         width: '100%',
         backgroundColor: '#f1f1f1',
         color: '#052b5c',
+        borderRadius: '10px',
       };
 
     const buttonStyle = {
@@ -104,7 +113,7 @@ const  VehiculoReparacion= () => {
         <ToastContainer autoClose={2000} hideProgressBar />
         <h1>Registra un nuevo vehículo</h1>
         <form onSubmit={handleSubmit}>
-            <input type="text" value={licensePlate} onChange={e => setLicensePlate(e.target.value)} placeholder="Patente" style={inputStyle} />
+            <input type="text" value={licensePlate} onChange={e => setLicensePlate(e.target.value)} placeholder="Patente - Ejemplo: AABB44" style={inputStyle} />
             <input type="text" value={brand} onChange={e => setBrand(e.target.value)} placeholder="Marca" style={inputStyle} />
             <input type="text" value={model} onChange={e => setModel(e.target.value)} placeholder="Modelo" style={inputStyle} />
             <select value={vehicleType} onChange={e => setVehicleType(e.target.value)} style={inputStyle}>
@@ -121,10 +130,11 @@ const  VehiculoReparacion= () => {
                 ))}
             </select>
             <input type="text" value={seats} onChange={e => setSeats(e.target.value)} placeholder="Número de asientos" style={inputStyle} />
+            <input type="text" value={mileage} onChange={e => setMileage(e.target.value)} placeholder="Kilometraje" style={inputStyle} />
             <button type="submit" style={buttonStyle}>Registrar vehículo</button>
         </form>
       </div>
     );                 
 };
 
-export default RegistroVehiculo;
+export default VehiculoReparacion;

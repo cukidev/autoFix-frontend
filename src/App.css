@@ -43,6 +43,7 @@
 
 .Toolbar {
   justify-content: space-between;
+  
 }
 
 .light {
@@ -60,18 +61,18 @@
   width: auto;
   min-height: 100vh; /* vh es relativo a la altura de la ventana del navegador */
   margin-top: 0px; /* Ajusta esto según la altura de tu navbar */;
+  padding-top: 200px;
+  
 }
 
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow-x: hidden; /* Esto previene desbordamiento horizontal */
+  overflow-x: hidden;
 }
 
-
 .navbar-logo {
-  height: 50px; /* o el tamaño que desees */
-  margin-right: 10px; /* Espaciado, si es necesario */
-  /* Otros estilos que desees aplicar */
+  height: 50px;
+  margin-right: 10px;
 }

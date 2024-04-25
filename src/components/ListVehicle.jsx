@@ -104,6 +104,9 @@ const ListVehicle = () => {
                 Número de Asientos
             </TableCell>
             <TableCell align="left" sx={{ fontWeight: "bold" }}>
+              Kilometraje
+            </TableCell>
+            <TableCell align="left" sx={{ fontWeight: "bold" }}>
               Operaciones
             </TableCell>
           </TableRow>
@@ -114,13 +117,14 @@ const ListVehicle = () => {
               key={vehicle.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell align="left">{vehicle.license_plate}</TableCell>
+              <TableCell align="left">{vehicle.licensePlate}</TableCell>
               <TableCell align="left">{vehicle.brand}</TableCell>
               <TableCell align="right">{vehicle.model}</TableCell>
               <TableCell align="right">{vehicle.v_type}</TableCell>
               <TableCell align="right">{vehicle.year_of_manufacture}</TableCell>
               <TableCell align="right">{vehicle.engine_type}</TableCell>
               <TableCell align="right">{vehicle.seats}</TableCell>
+              <TableCell align="left">{vehicle.mileage}</TableCell>
               <TableCell>
                 <Button
                   variant="contained"
