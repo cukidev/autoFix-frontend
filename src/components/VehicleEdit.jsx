@@ -11,7 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-const EditVehicle = () => {
+const VehicleEdit = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -53,15 +53,15 @@ const EditVehicle = () => {
             return;
         }
 
-        // Validación para el kilometraje tiene que ser un numero siosi
-        if (isNaN(mileage)) {
-            toast.error("El kilometraje debe ser un número.");
+        // Validación para el kilometraje tiene que ser un numero siosi y no puede sobrepasar los 6 digito
+        if (isNaN(mileage) || mileage.length > 6) {
+            toast.error("El kilometraje debe ser un número y no puede sobrepasar los 6 dígitos.");
             return;
         }
 
         const vehicle = {
             id,
-            license_plate: licensePlate,
+            licensePlate: licensePlate,
             brand,
             model,
             v_type: vehicleType,
@@ -105,7 +105,7 @@ const EditVehicle = () => {
                 .get(id)
                 .then((response) => {
                     const vehicle = response.data;
-                    setLicensePlate(vehicle.license_plate);
+                    setLicensePlate(vehicle.licensePlate);
                     setBrand(vehicle.brand);
                     setModel(vehicle.model);
                     setVehicleType(vehicle.v_type);
@@ -217,7 +217,7 @@ const EditVehicle = () => {
                 </FormControl >
                 <Button
                     type="submit"
-                    onClick={(e) => createVehicle(e)}
+                    onClick={(e) => updateVehicle(e)}
                     variant="contained"
                     color="info"
                     style = {{marginTop: "1rem"} }
@@ -232,4 +232,4 @@ const EditVehicle = () => {
     );
 }
 
-export default EditVehicle;
+export default VehicleEdit;

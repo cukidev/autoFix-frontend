@@ -19,4 +19,11 @@ const update = data => {
 const remove = id => {
     return httpClient.delete(`/api/v1/repair/${id}`);
 }
+
+const getRepairCostByType = repairType => {
+    return httpClient.get(`/api/v1/repair/cost/${repairType}`);
+}
+
+
+
 export default { getAll, create, get, update, remove };

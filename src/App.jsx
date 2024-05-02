@@ -3,11 +3,12 @@ import { ThemeProvider } from './ThemeContext.jsx';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import Home from './components/Home';
 import Navbar from "./components/navbar"
-import RegistroReparacion from "./components/RegistroReparacion.jsx"
-import RegistroVehiculo from './components/VehiculoReparacion.jsx';
-import ListVehicle from './components/ListVehicle.jsx';
-import ListRepair from './components/ListRepair.jsx';
-import EditVehicle from './components/EditVehicle.jsx';
+import RepairAdd from "./components/RepairAdd.jsx"
+import RepairList from './components/RepairList.jsx';
+import VehicleEdit from './components/VehicleEdit.jsx';
+import VehicleAdd from './components/VehicleAdd.jsx';
+import VehicleList from './components/VehicleList.jsx';
+import RepairEdit from './components/RepairEdit.jsx';
 
 
 function App() {
@@ -18,11 +19,12 @@ function App() {
             <Navbar></Navbar>
               <Routes>
                 <Route path="/home" element={<Home/>} />
-                <Route path="/repair/list" element={<ListRepair/>} />
-                <Route path="/repair/add" element={<RegistroReparacion/>} />
-                <Route path="/vehicle/list" element={<ListVehicle/>} />
-                <Route path="/vehicle/add" element={<RegistroVehiculo/>} />
-                <Route path="/vehicle/edit/:id" element={<EditVehicle/>} />
+                <Route path="/repair/list" element={<RepairList/>} />
+                <Route path="/repair/add" element={<RepairAdd/>} />
+                <Route path="/repair/edit/:id" element={<RepairEdit/>} />
+                <Route path="/vehicle/list" element={<VehicleList/>} />
+                <Route path="/vehicle/add" element={<VehicleAdd/>} />
+                <Route path="/vehicle/edit/:id" element={<VehicleEdit/>} />
               </Routes>
             </div>
         </Router>

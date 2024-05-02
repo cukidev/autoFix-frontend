@@ -1,0 +1,45 @@
+.home-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .logo-image {
+    width: 90px;
+    height: auto;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    color: #333;
+  }
+  
+  .author {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  .project-info {
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  .project-info p {
+    margin-bottom: 10px;
+  }
+  
+  .project-info ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .project-info li {
+    margin-bottom: 5px;
+  }
+  
+  .project-info li::before {
+    content: "🛠️ ";
+    color: #28a745;
+  }
+  

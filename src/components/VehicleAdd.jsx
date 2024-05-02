@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import vehicleService from "../services/vehicle.service";
 import 'react-toastify/dist/ReactToastify.css';
 
-const  VehiculoReparacion= () => {
+const  VehicleAdd= () => {
     const navigate = useNavigate();
 
     const [licensePlate, setLicensePlate] = useState("");
@@ -54,9 +54,9 @@ const  VehiculoReparacion= () => {
         }
 
         const newVehicle = {
-            license_plate: licensePlate,
-            brand,
-            model,
+            licensePlate: licensePlate.toUpperCase(),
+            brand: brand.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' '),
+            model: model.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' '),
             v_type: vehicleType,
             year_of_manufacture: yearOfManufacture,
             engine_type: engineType,
@@ -137,4 +137,4 @@ const  VehiculoReparacion= () => {
     );                 
 };
 
-export default VehiculoReparacion;
+export default VehicleAdd;

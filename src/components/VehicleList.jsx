@@ -9,11 +9,12 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { DirectionsCar } from "@mui/icons-material";
 
-const ListVehicle = () => {
+const VehicleList = () => {
   const [vehicles, setVehicles] = useState([]);
 
   const navigate = useNavigate();
@@ -73,7 +74,7 @@ const ListVehicle = () => {
         <Button
           variant="contained"
           color="primary"
-          startIcon={<PersonAddIcon />}
+          startIcon={<DirectionsCarIcon/>}
         >
           Añadir Vehículo
         </Button>
@@ -156,4 +157,4 @@ const ListVehicle = () => {
   );
 };
 
-export default ListVehicle;
+export default VehicleList;
